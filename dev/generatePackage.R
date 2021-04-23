@@ -18,7 +18,7 @@ devtools::check()
 
 # Test if you can install the package
 golem::detach_all_attached()
-remotes::install_local(upgrade = "never", force = TRUE)
+remotes::install_local(upgrade = "never", force = TRUE, build_vignettes = TRUE)
 
 # Create a tar.gz
 devtools::build()
