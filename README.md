@@ -11,3 +11,5 @@ Check the vignette to see how to use the package:
 ```R
 browseVignettes("EMOGEA")
 ```
+
+It is highly recommended to use the Microsoft R Open distribution to use the package (R >= 4.0.0).
