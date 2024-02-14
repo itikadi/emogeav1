@@ -53,7 +53,8 @@ conditionColumn <- yeastExample$conditionColumn
 # gene expression matrix measured as a function of time. The input data is an expression matrix which must
 # have metadata with replicate information. If there are no replicates, the total least squares implementation
 # of the algorithm cannot be performed and instead, an unweighted ordinary alternating least squares  implementation is used.
-# The output is a list consisting of 
+# The output is a list, prepareDataOutput, that contains: the processed expression data (expressionMatrix),
+# the residual matrix (residualMatrix), and the error covariance matrix (errorCovarianceMatrix).
 
 prepareDataOutput <- prepareData(
   expressionData = expressionData,
