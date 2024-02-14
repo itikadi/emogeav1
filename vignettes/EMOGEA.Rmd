@@ -54,7 +54,9 @@ conditionColumn <- yeastExample$conditionColumn
 # have metadata with replicate information. If there are no replicates, the total least squares implementation
 # of the algorithm cannot be performed and instead, an unweighted ordinary alternating least squares  implementation is used.
 # The output is a list, prepareDataOutput, that contains: the processed expression data (expressionMatrix),
-# the residual matrix (residualMatrix), and the error covariance matrix (errorCovarianceMatrix).
+# the residual matrix (residualMatrix), and the error covariance matrix (errorCovarianceMatrix). More details of the pre-processing
+# performed by this function can be found in the help file for the function itself.
+#
 
 prepareDataOutput <- prepareData(
   expressionData = expressionData,
