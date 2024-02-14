@@ -64,8 +64,11 @@ prepareDataOutput <- prepareData(
   sampleColumn = sampleColumn,
   conditionColumn = conditionColumn,
   applyLogTransformation = FALSE)
-
-# (iii) Maximum Likelihood Projection
+#
+#-----------------------------------
+# (2) Maximum Likelihood Projection
+# ----------------------------------
+#
 projectionOutput <- mlProjection(
   expressionMatrix = prepareDataOutput$expressionMatrix,
   errorCovarianceMatrix = prepareDataOutput$errorCovarianceMatrix)
