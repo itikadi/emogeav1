@@ -49,7 +49,12 @@ sampleColumn <- yeastExample$sampleColumn
 conditionColumn <- yeastExample$conditionColumn
 
 #---------- (ii) Prepare data -------------------
-#
+# This function prepares input data for the EMOGEA curve resolution function that calculates the profiles of a
+# gene expression matrix measured as a function of time. The input data is an expression matrix which must
+# have metadata with replicate information. If there are no replicates, the total least squares implementation
+# of the algorithm cannot be performed and instead, an unweighted ordinary alternating least squares  implementation is used.
+# The output is a list consisting of 
+
 prepareDataOutput <- prepareData(
   expressionData = expressionData,
   metaData = metaData,
