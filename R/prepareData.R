@@ -1,7 +1,8 @@
-#' This function is meant to prepare the input to curve resolution function that calculates the profiles of a
+#' This function prepares input data for the EMOGEA curve resolution function that calculates the profiles of a
 #' gene expression matrix measured as a function of time. The input data is an expression matrix which must
 #' have a metadata with replicate information. If there are no replicates, the total least squares implementation
-#' of the algorithm cannot be performed.
+#' of the algorithm cannot be performed and instead, an unweighted ordinary alternating least squares  implementation is used.
+#'
 #'
 #' @author Tobias K. Karakach, Federico Taverna
 #'
@@ -24,7 +25,7 @@
 #' @param applyLogTransformation Whether to apply the log2 transformation to the expression data or not.
 #' If the data is already log transformed, the value should be FALSE.
 #'
-#' @return A list which contains: the processed expression data (expressionMatrix),
+#' @return A list that contains: the processed expression data (expressionMatrix),
 #' the residual matrix (residualMatrix), the error covariance matrix (errorCovarianceMatrix).
 #'
 #' @export
