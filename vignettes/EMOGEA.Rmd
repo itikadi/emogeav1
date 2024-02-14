@@ -68,12 +68,29 @@ prepareDataOutput <- prepareData(
 #-----------------------------------
 # (2) Maximum Likelihood Projection
 # ----------------------------------
+# At its most basic form, Maximul Likelihood PCA can be viewed as a superset of the classical PCA that is weighted by measurement 
+# errors that de-emphasize noisy measurements. It is however more sophisticated since it incorporates measurement errors of different
+# structures ranging from the basic homoscedastic (iid normal) to more complex heteroscedastic noise with different correlation structures.
+# mlProjection performs this MLPCA and requires the following:
+# (a) expressionMatrix: the expression matrix organized as (n X m), where n is the number of genes and m is the number of samples.This input arises from the output of prepareData() as #  decribed in 1(ii) above.
+# (b) errorCovarianceMatrix: The inverse of the measurement errors, whose dimensions are (*n* X *n*). You should use the errorCovarianceMatrix output of prepareData().
+# (c) numberOfComponents: the number of principal components estimated to be required to reconstruct the expression matrix without loss of generality (default =15).
+# (d) maxiter: The maximum number of iterations to peform during the computation of the Maximum Likelihood. Once the max iteration is reached,the algorithms stops (default=2000).
+# (e) tolerance The termination tolerance for the computation of the Maximum Likelihood. Once the improvements made by Maximum Likelihood reach the
+# (f) tolerance, the algorithm stops (default =1e-10).
+# (g) verbose Whether to display the information about the computation or not.(default=TRUE)
 #
+# output: A list consisting of U (principal components), S(eigenvalues) and V (loadings).
+# The estimated matrix (estimatedMatrix) is given as t(U %*% S %*% t(V)).
+
 projectionOutput <- mlProjection(
   expressionMatrix = prepareDataOutput$expressionMatrix,
   errorCovarianceMatrix = prepareDataOutput$errorCovarianceMatrix)
-
-# Curve resolution
+#
+#-----------------------------------
+# (2) Self-modelling Curve Resolution 
+# ----------------------------------
+#
 curveResOutput <- multivariateCurveResolution(
   expressionMatrix = prepareDataOutput$expressionMatrix,
   residualMatrix = prepareDataOutput$residualMatrix)
