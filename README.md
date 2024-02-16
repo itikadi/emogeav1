@@ -8,7 +8,7 @@ Technical description of the method and extended usage examples will soon be ava
 The current **implementation** of EMOGEA is in R (this repository).
 The **output** from any of the implementations can be explored either in R or Python.
 
-To install the package, type in the R console: 
+To install the package, type the following in the R console: 
 ```R
 devtools::install_github("itikadi/emogeav1", build_vignettes = TRUE)
 ```
