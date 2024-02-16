@@ -13,7 +13,7 @@ The **output** from any of the implementations can be explored either in R or Py
 To use **R** for the whole analysis, there is the main tutorial:
 > The tutorials in R include a more detailed explanation of the workflow and source code.
 
-  - [Introduction and setup](https://github.com/itikadi/emogeav1/blob/master/vignettes/EMOGEA.md)
+  - [Introduction and setup](https://htmlpreview.github.io/?https://github.com/itikadi/emogeav1/blob/master/emogea_v1.html)
   
 To install the package, type the following in the R console: 
 ```R
