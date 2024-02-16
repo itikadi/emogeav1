@@ -1,19 +1,22 @@
 ---
 title: "EMOGEA"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{EMOGEA}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+author: "Tobias Karakach"
+date: "`r Sys.Date()`"
+output: html_document
 ---
+
+
+## Tutorial
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  echo = TRUE,
   comment = "#>"
 )
 ```
-
+ also sabe as
  
 
 #1 Usage
