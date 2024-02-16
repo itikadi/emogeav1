@@ -1,6 +1,9 @@
 # EMOGEA
+**EMOGEA (Error Modeled Gene Expression Analysis )** is a computational method for the analysis of RNA-Seq gene expression data. 
 
-EMOGEA stands for Error Modeled Gene Expression Analysis (EMOGEA), an R package for the analysis of RNA-Seq gene expression data.
+The description of the method and some usage examples will soon be available upon publication.
+
+The current **implementation** of EMOGEA is in R (this repository).
 
 To install the package, type in the R console: 
 ```R
