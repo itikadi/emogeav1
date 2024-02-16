@@ -1,25 +1,5 @@
----
-title: "EMOGEA"
-author: "Tobias Karakach"
-date: "`r Sys.Date()`"
-output: html_document
----
 
-
-## Tutorial
-
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  echo = TRUE,
-  comment = "#>"
-)
-```
- also sabe as
- 
-
-#1 Usage
+## 1 Introduction
 
 ```{r echo = T, eval = F}
 #-----------------------
@@ -101,10 +81,6 @@ curveResOutput <- multivariateCurveResolution(
 # Curve resolution (without residual matrix)
 curveResOutput <- multivariateCurveResolution(expressionMatrix = prepareDataOutput$expressionMatrix)
 ```
-
-
-
-
 
 
 
