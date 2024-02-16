@@ -22,9 +22,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
- also sabe as
- 
-
 ## 1 Introduction
 
 ```{r echo = T, eval = F}
