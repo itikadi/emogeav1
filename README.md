@@ -13,7 +13,7 @@ The **output** from any of the implementations can be explored either in R or Py
 To use **R** for the whole analysis, there is the main tutorial:
 > The tutorials in R include a more detailed explanation of the workflow and source code.
 
-  - [Introduction and setup](http://htmlpreview.github.io/?https://github.com/aertslab/SCENIC/blob/master/inst/doc/SCENIC_Setup.html)
+  - [Introduction and setup](https://github.com/itikadi/emogeav1/blob/master/vignettes/EMOGEA.Rmd)
   
 To install the package, type the following in the R console: 
 ```R
