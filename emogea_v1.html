@@ -1042,58 +1042,11 @@ annot &lt;- annot[non_na_idx, ]
 xdata2&lt;-merge(annot,xdata)
 
 #
-#-----------------------Calculate the cosine similarity between gene expression profiles and MCR output----
+#---Calculate the cosine similarity between gene expression profiles and MCR output----
 #
-Copt&lt;-curveResOutput$Copt[,x_ord]
+
+profiles&lt;-computeGeneProfiles(expressionMatrix, curveResOutput$Copt) # This is a function that computes gene profiles from the MCR output using the expression matrix and the optimized matrix C. We use cosine similarity instead of correlation coefficient. You can export the output to a file if you want to use it in other software for functional analysis for example
 #
-Xorg&lt;-t(as.matrix(xdata2[,8:dim(xdata2)[2]]))
-Genes&lt;-xdata2[,1:7]
-ngenes &lt;- ncol(Xorg)
-angles &lt;- matrix(0,ncomp,ngenes)
-similarity&lt;-angles
-#
-for (j in 1: ncomp)
-{
-  c&lt;-norm.scale(Copt[,j])
-  j
-  for (i in 1:ngenes)
-  {
-    s&lt;-norm.scale(Xorg[,i])
-    similarity[j,i] = cosine(Xorg[,i], Copt[,j]) # Cosine Similarity
-    angles[j,i]=cor(c,s) # Correlation coefficient
-    }
-}
-#
-angles&lt;-as.data.frame(similarity) # We use cosine similarity instead of correlation coefficient
-colnames(angles)&lt;-xdata2$ENSEMBLID
-delete.na &lt;- function(DF, n=0) {
-  DF[,colSums(is.na(DF)) &lt;= n]
-}
-newAngles&lt;-delete.na(angles)
-#
-geneProfiles&lt;-data.frame((matrix(vector(),dim(newAngles)[2],ncomp,
-                                 dimnames = list(c(),colnames(C)))))
-sortedAngles&lt;-geneProfiles
-for (i in 1:ncomp){
-  k&lt;-sort(newAngles[i,],decreasing = T,na.last=TRUE)
-  geneProfiles[,i]&lt;-names(k)
-  sortedAngles[,i]&lt;-t(k)
-  rm(k)
-}
-##
-Gene.annotations&lt;-Genes
-prof.name&lt;-purrr::set_names(geneProfiles, paste0(&quot;Prof_&quot;,1:ncol(geneProfiles)))
-#
-#----------Export gene profiles as an option----------
-#
-for (j in 1:ncomp)
-{
-  xb&lt;-as.data.frame(cbind(geneProfiles[,j],sortedAngles[,j]))
-  colnames(xb)&lt;-c(&quot;ENSEMBLID&quot;,&quot;CorCoef&quot;)
-  profile.annot&lt;-plyr::join(xb,Gene.annotations)
-  filNam&lt;-paste0(dataDir,&quot;MCR_wALSgeneProfile_&quot;,j,&quot;_.csv&quot;)
-  data.table::fwrite(profile.annot,file = filNam, sep=&quot;,&quot;)
-}
 #</code></pre>
 </div>
 </div>

@@ -282,58 +282,11 @@ annot <- annot[non_na_idx, ]
 xdata2<-merge(annot,xdata)
 
 #
-#-----------------------Calculate the cosine similarity between gene expression profiles and MCR output----
+#---Calculate the cosine similarity between gene expression profiles and MCR output----
 #
-Copt<-curveResOutput$Copt[,x_ord]
+
+profiles<-computeGeneProfiles(expressionMatrix, curveResOutput$Copt) # This is a function that computes gene profiles from the MCR output using the expression matrix and the optimized matrix C. We use cosine similarity instead of correlation coefficient. You can export the output to a file if you want to use it in other software for functional analysis for example
 #
-Xorg<-t(as.matrix(xdata2[,8:dim(xdata2)[2]]))
-Genes<-xdata2[,1:7]
-ngenes <- ncol(Xorg)
-angles <- matrix(0,ncomp,ngenes)
-similarity<-angles
-#
-for (j in 1: ncomp)
-{
-  c<-norm.scale(Copt[,j])
-  j
-  for (i in 1:ngenes)
-  {
-    s<-norm.scale(Xorg[,i])
-    similarity[j,i] = cosine(Xorg[,i], Copt[,j]) # Cosine Similarity
-    angles[j,i]=cor(c,s) # Correlation coefficient
-    }
-}
-#
-angles<-as.data.frame(similarity) # We use cosine similarity instead of correlation coefficient
-colnames(angles)<-xdata2$ENSEMBLID
-delete.na <- function(DF, n=0) {
-  DF[,colSums(is.na(DF)) <= n]
-}
-newAngles<-delete.na(angles)
-#
-geneProfiles<-data.frame((matrix(vector(),dim(newAngles)[2],ncomp,
-                                 dimnames = list(c(),colnames(C)))))
-sortedAngles<-geneProfiles
-for (i in 1:ncomp){
-  k<-sort(newAngles[i,],decreasing = T,na.last=TRUE)
-  geneProfiles[,i]<-names(k)
-  sortedAngles[,i]<-t(k)
-  rm(k)
-}
-##
-Gene.annotations<-Genes
-prof.name<-purrr::set_names(geneProfiles, paste0("Prof_",1:ncol(geneProfiles)))
-#
-#----------Export gene profiles as an option----------
-#
-for (j in 1:ncomp)
-{
-  xb<-as.data.frame(cbind(geneProfiles[,j],sortedAngles[,j]))
-  colnames(xb)<-c("ENSEMBLID","CorCoef")
-  profile.annot<-plyr::join(xb,Gene.annotations)
-  filNam<-paste0(dataDir,"MCR_wALSgeneProfile_",j,"_.csv")
-  data.table::fwrite(profile.annot,file = filNam, sep=",")
-}
 #
 ```
 # Analysis of scRNAseq data 
